@@ -1,6 +1,6 @@
 import { IsArray, IsEnum, IsOptional, IsString } from 'class-validator';
-import { PageOptionsDto } from 'src/page/page-option.dto';
-import { SortOrder } from 'src/utils/SortOrder';
+import { PageOptionsDto } from '../../page/page-option.dto';
+import { SortOrder } from '../../utils/SortOrder';
 
 export class FindProductDto extends PageOptionsDto {
   @IsString()

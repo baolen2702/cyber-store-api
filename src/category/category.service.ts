@@ -5,8 +5,8 @@ import { Category } from './entities/category.entity';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindAllCategoryDto } from './dto/find-all-category-dto';
-import { PageDto } from 'src/page/page.dto';
-import { PageMetaDto } from 'src/page/page-meta.dto';
+import { PageDto } from '../page/page.dto';
+import { PageMetaDto } from '../page/page-meta.dto';
 
 @Injectable()
 export class CategoryService {

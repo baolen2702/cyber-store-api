@@ -5,8 +5,8 @@ import { Product } from './entities/product.entity';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindProductDto } from './dto/find-product.dto';
-import { PageMetaDto } from 'src/page/page-meta.dto';
-import { PageDto } from 'src/page/page.dto';
+import { PageMetaDto } from '../page/page-meta.dto';
+import { PageDto } from '../page/page.dto';
 import { faker } from '@faker-js/faker';
 
 @Injectable()

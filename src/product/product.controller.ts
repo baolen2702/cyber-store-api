@@ -12,7 +12,7 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { FindProductDto } from './dto/find-product.dto';
-import { PageOptionsDto } from 'src/page/page-option.dto';
+import { PageOptionsDto } from '../page/page-option.dto';
 
 @Controller('product')
 export class ProductController {
