@@ -4,6 +4,7 @@ import { UpdateProductOptionValueDto } from './dto/update-product-option-value.d
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductOptionValue } from './entities/product-option-value.entity';
 import { Repository } from 'typeorm';
+import { seedProductOptionValues } from '../seedData/data';
 
 @Injectable()
 export class ProductOptionValueService {
@@ -16,15 +17,24 @@ export class ProductOptionValueService {
   }
 
   findAll() {
-    return `This action returns all productOptionValue`;
+    return this.productOptionValueRepository
+      .createQueryBuilder('product_option_value')
+      .where({})
+      .getMany();
   }
 
   findOne(id: number) {
     return `This action returns a #${id} productOptionValue`;
   }
 
-  update(id: number, updateProductOptionValueDto: UpdateProductOptionValueDto) {
-    return `This action updates a #${id} productOptionValue`;
+  async update(
+    id: number,
+    updateProductOptionValueDto: UpdateProductOptionValueDto,
+  ) {
+    return this.productOptionValueRepository.update(
+      { id },
+      { variantId: updateProductOptionValueDto.variantId },
+    );
   }
 
   remove(id: number) {
@@ -32,15 +42,6 @@ export class ProductOptionValueService {
   }
 
   async seed() {
-    // const productIds = [
-    //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    // ];
-    // const options = productIds.map((id) => ({
-    //   productId: id + 40,
-    //   name: 'US',
-    // }));
-    // const data = await this.productOptionValueRepository.create(options);
-
-    // return this.productOptionValueRepository.save(data);
+    return this.productOptionValueRepository.save(seedProductOptionValues);
   }
 }

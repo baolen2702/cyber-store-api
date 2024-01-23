@@ -7,6 +7,7 @@ import { ProductModule } from './product/product.module';
 import { DbModule } from './db/db.module';
 import { ProductOptionModule } from './product-option/product-option.module';
 import { ProductOptionValueModule } from './product-option-value/product-option-value.module';
+import { ProductVariantModule } from './product-variant/product-variant.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ProductOptionValueModule } from './product-option-value/product-option-
     DbModule,
     ProductOptionModule,
     ProductOptionValueModule,
+    ProductVariantModule,
   ],
   controllers: [AppController],
   providers: [AppService],

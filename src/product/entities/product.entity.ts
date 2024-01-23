@@ -7,10 +7,11 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ProductVariant } from '../../product-variant/entities/product-variant.entity';
+import { ProductOptionValue } from '../../product-option-value/entities/product-option-value.entity';
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
@@ -41,8 +42,24 @@ export class Product {
   @Column({ type: 'int', nullable: true })
   categoryId: number;
 
-  @OneToMany(() => ProductOption, (productOption) => productOption.product, { cascade: true })
+  @OneToMany(() => ProductOption, (productOption) => productOption.product, {
+    cascade: true,
+  })
   options: ProductOption[];
+
+  @OneToMany(() => ProductVariant, (productVariant) => productVariant.product, {
+    cascade: true,
+  })
+  variants: ProductVariant[];
+
+  @OneToMany(
+    () => ProductOptionValue,
+    (productVariantValue) => productVariantValue.product,
+    {
+      cascade: true,
+    },
+  )
+  values: ProductOptionValue[];
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

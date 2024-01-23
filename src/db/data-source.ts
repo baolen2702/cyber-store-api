@@ -5,12 +5,9 @@ import { ProductOption } from '../product-option/entities/product-option.entity'
 import { Category } from '../category/entities/category.entity';
 import { Product } from '../product/entities/product.entity';
 import { ProductOptionValue } from '../product-option-value/entities/product-option-value.entity';
+import { ProductVariant } from '../product-variant/entities/product-variant.entity';
 config({ path: resolve(__dirname, '../..', '.env') });
-console.log(
-  'process.env.DATABASE_HOST',
-  process.env.DATABASE_HOST,
-  resolve(__dirname, '../..', '.env'),
-);
+
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DATABASE_HOST,
@@ -19,8 +16,14 @@ export const dataSourceOptions: DataSourceOptions = {
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   ssl: true,
-  synchronize: false,
+  synchronize: true,
   // migrations: ['src/db/migrations/*{.ts,.js}'],
-  entities: [Product, Category, ProductOption, ProductOptionValue],
+  entities: [
+    Product,
+    Category,
+    ProductOption,
+    ProductOptionValue,
+    ProductVariant,
+  ],
 };
 export default new DataSource(dataSourceOptions);

@@ -4,8 +4,8 @@ import { UpdateProductOptionDto } from './dto/update-product-option.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProductOption } from './entities/product-option.entity';
-import { faker } from '@faker-js/faker';
 import { Product } from '../product/entities/product.entity';
+import { seedProductOptions } from '../seedData/data';
 
 @Injectable()
 export class ProductOptionService {
@@ -20,30 +20,22 @@ export class ProductOptionService {
   }
 
   findAll() {
-    return `This action returns all productOption`;
+    return this.productOptionRepository
+      .createQueryBuilder('product_option')
+      .where({})
+      .getMany();
   }
 
   findOne(id: number) {
     return `This action returns a #${id} productOption`;
   }
 
-  update(id: number, updateProductOptionDto: UpdateProductOptionDto) {
-    return `This action updates a #${id} productOption`;
-  }
+  async update(id: number, updateProductOptionDto: UpdateProductOptionDto) {}
 
   remove(id: number) {
     return `This action removes a #${id} productOption`;
   }
   async seed(body: CreateProductOptionDto) {
-    const productIds = [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    ];
-    const options = productIds.map((id) => ({
-      productId: id,
-      name: body.name,
-    }));
-    const data = await this.productOptionRepository.create(options);
-
-    return this.productOptionRepository.save(data);
+    return this.productOptionRepository.save(seedProductOptions);
   }
 }

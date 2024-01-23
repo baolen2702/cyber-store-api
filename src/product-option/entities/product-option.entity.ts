@@ -5,25 +5,29 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ProductOptionValue } from '../../product-option-value/entities/product-option-value.entity';
 import { Product } from '../../product/entities/product.entity';
+import { ProductVariant } from '../../product-variant/entities/product-variant.entity';
 
 @Entity()
 export class ProductOption {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @PrimaryColumn()
   @Column({ type: 'varchar', default: true })
   name: string;
+
+  @PrimaryColumn()
+  @Column({ type: 'int', nullable: true })
+  productId: number;
 
   @ManyToOne(() => Product, (product) => product.options)
   @JoinColumn({ name: 'productId' })
   product: Product;
-
-  @Column({ type: 'int', nullable: true })
-  productId: number;
 
   @OneToMany((type) => ProductOptionValue, (value) => value.option, {
     cascade: true,

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { ProductOptionService } from './product-option.service';
 import { CreateProductOptionDto } from './dto/create-product-option.dto';
@@ -30,7 +31,7 @@ export class ProductOptionController {
     return this.productOptionService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateProductOptionDto: UpdateProductOptionDto,
