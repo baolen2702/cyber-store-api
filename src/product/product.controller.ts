@@ -12,7 +12,6 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { FindProductDto } from './dto/find-product.dto';
-import { PageOptionsDto } from '../page/page-option.dto';
 
 @Controller('product')
 export class ProductController {
@@ -25,8 +24,6 @@ export class ProductController {
 
   @Get()
   findAll(@Query() query: FindProductDto) {
-    const pageOption = new PageOptionsDto();
-
     return this.productService.findAll(query);
   }
 

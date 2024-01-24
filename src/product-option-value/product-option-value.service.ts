@@ -13,6 +13,8 @@ export class ProductOptionValueService {
     private productOptionValueRepository: Repository<ProductOptionValue>,
   ) {}
   create(createProductOptionValueDto: CreateProductOptionValueDto) {
+    console.log(createProductOptionValueDto);
+
     return 'This action adds a new productOptionValue';
   }
 

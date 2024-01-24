@@ -12,16 +12,16 @@ import {
 @Entity()
 export class ProductVariant {
   @PrimaryGeneratedColumn({ type: 'int' })
-  id: Number;
+  id: number;
 
   @Column({ type: 'varchar' })
-  sku: String;
+  sku: string;
 
   @Column({ type: 'int' })
-  productId: Number;
+  productId: number;
 
   @Column({ type: 'int' })
-  quantity: Number;
+  quantity: number;
 
   @ManyToOne(() => Product, (product) => product.variants)
   @JoinColumn({ name: 'productId' })

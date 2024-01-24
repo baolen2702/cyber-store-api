@@ -1,4 +1,1 @@
-
-export class UpdateProductVariantDto  {
-    
-}
+export class UpdateProductVariantDto {}

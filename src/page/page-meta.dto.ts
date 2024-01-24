@@ -5,7 +5,6 @@ export interface PageMetaDtoParameters {
   itemCount: number;
 }
 
-
 export class PageMetaDto {
   readonly page: number;
 

@@ -10,7 +10,6 @@ import {
 } from 'typeorm';
 import { ProductOptionValue } from '../../product-option-value/entities/product-option-value.entity';
 import { Product } from '../../product/entities/product.entity';
-import { ProductVariant } from '../../product-variant/entities/product-variant.entity';
 
 @Entity()
 export class ProductOption {
@@ -29,7 +28,7 @@ export class ProductOption {
   @JoinColumn({ name: 'productId' })
   product: Product;
 
-  @OneToMany((type) => ProductOptionValue, (value) => value.option, {
+  @OneToMany(() => ProductOptionValue, (value) => value.option, {
     cascade: true,
   })
   values: ProductOptionValue[];

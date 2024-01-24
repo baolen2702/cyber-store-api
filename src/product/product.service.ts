@@ -20,20 +20,30 @@ export class ProductService {
   }
 
   async findAll(query: FindProductDto) {
+    console.log({ query: query.categoryId });
+
     let queryBuilder: SelectQueryBuilder<Product> = this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.category', 'category');
 
-    if (query.categoryIds && query.categoryIds.length > 0) {
+    if (
+      query.categoryId &&
+      Array.isArray(query.categoryId) &&
+      query.categoryId.length > 0
+    ) {
       queryBuilder = queryBuilder.where(
-        'product.categoryId IN (:...categoryIds)',
+        'product.categoryId IN (:...categoryId)',
         {
-          categoryIds: query.categoryIds,
+          categoryId: query.categoryId,
         },
       );
     }
-    if (query.createdAt) {
-      queryBuilder = queryBuilder.orderBy('product.createdAt', query.createdAt);
+
+    if (query.sortBy && query.sortOrder) {
+      queryBuilder = queryBuilder.orderBy(
+        `product.${query.sortBy}`,
+        query.sortOrder,
+      );
     }
 
     const total = await queryBuilder.getCount();
@@ -60,6 +70,8 @@ export class ProductService {
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
+    console.log({ updateProductDto });
+
     return `This action updates a #${id} product`;
   }
 

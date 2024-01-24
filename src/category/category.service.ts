@@ -1,4 +1,4 @@
-import { Injectable, Query } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
@@ -17,11 +17,12 @@ export class CategoryService {
   ) {}
 
   create(createCategoryDto: CreateCategoryDto) {
+    console.log({ createCategoryDto });
     return 'This action adds a new category';
   }
 
   async findAll(query: FindAllCategoryDto) {
-    let queryBuilder: SelectQueryBuilder<Category> =
+    const queryBuilder: SelectQueryBuilder<Category> =
       this.categoryRepository.createQueryBuilder('category');
     const total = await queryBuilder.getCount();
     const categories = await queryBuilder
@@ -41,6 +42,8 @@ export class CategoryService {
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
+    console.log({ updateCategoryDto });
+
     return `This action updates a #${id} category`;
   }
 

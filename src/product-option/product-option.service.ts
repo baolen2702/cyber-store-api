@@ -16,6 +16,8 @@ export class ProductOptionService {
     private productRepository: Repository<Product>,
   ) {}
   create(createProductOptionDto: CreateProductOptionDto) {
+    console.log({ createProductOptionDto });
+
     return 'This action adds a new productOption';
   }
 
@@ -30,12 +32,14 @@ export class ProductOptionService {
     return `This action returns a #${id} productOption`;
   }
 
-  async update(id: number, updateProductOptionDto: UpdateProductOptionDto) {}
+  async update(id: number, updateProductOptionDto: UpdateProductOptionDto) {
+    console.log({ id, updateProductOptionDto });
+  }
 
   remove(id: number) {
     return `This action removes a #${id} productOption`;
   }
-  async seed(body: CreateProductOptionDto) {
+  async seed() {
     return this.productOptionRepository.save(seedProductOptions);
   }
 }

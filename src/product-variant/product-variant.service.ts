@@ -12,7 +12,10 @@ export class ProductVariantService {
     @InjectRepository(ProductVariant)
     private productVariantRepository: Repository<ProductVariant>,
   ) {}
+
   create(createProductVariantDto: CreateProductVariantDto) {
+    console.log({ createProductVariantDto });
+
     return 'This action adds a new productVariant';
   }
 
@@ -25,6 +28,7 @@ export class ProductVariantService {
   }
 
   update(id: number, updateProductVariantDto: UpdateProductVariantDto) {
+    console.log({ updateProductVariantDto });
     return `This action updates a #${id} productVariant`;
   }
 

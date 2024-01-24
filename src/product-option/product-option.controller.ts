@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Put,
@@ -45,7 +44,7 @@ export class ProductOptionController {
   }
 
   @Post('seed')
-  seed(@Body() createProductOptionDto: CreateProductOptionDto) {
-    return this.productOptionService.seed(createProductOptionDto);
+  seed() {
+    return this.productOptionService.seed();
   }
 }
