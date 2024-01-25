@@ -14,23 +14,18 @@ export class ProductService {
   constructor(
     @InjectRepository(Product) private productRepository: Repository<Product>,
   ) {}
+
   async create(createProductDto: CreateProductDto) {
     const product = await this.productRepository.create(createProductDto);
     return this.productRepository.save(product);
   }
 
   async findAll(query: FindProductDto) {
-    console.log({ query: query.categoryId });
-
     let queryBuilder: SelectQueryBuilder<Product> = this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.category', 'category');
 
-    if (
-      query.categoryId &&
-      Array.isArray(query.categoryId) &&
-      query.categoryId.length > 0
-    ) {
+    if (query.categoryId && query.categoryId.length > 0) {
       queryBuilder = queryBuilder.where(
         'product.categoryId IN (:...categoryId)',
         {

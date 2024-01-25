@@ -19,8 +19,13 @@ export class FindProductDto extends PageOptionsDto {
 
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
-  @Type(() => String)
-  @Transform(({ value }) => value.split(','))
-  categoryId?: string[];
+  @Type(() => Number)
+  @Transform(({ value }) => {
+    if (typeof value === 'number') {
+      return [value];
+    }
+
+    return value;
+  })
+  categoryId: number[];
 }
