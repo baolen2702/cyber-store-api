@@ -1,7 +1,7 @@
 import { IsArray, IsEnum, IsOptional, IsString } from 'class-validator';
 import { PageOptionsDto } from '../../page/page-option.dto';
 import { SortOrder } from '../../utils/SortOrder';
-import { ProductSortField } from 'src/utils/ProductSortField';
+import { ProductSortField } from '../../utils/ProductSortField';
 import { Transform, Type } from 'class-transformer';
 
 export class FindProductDto extends PageOptionsDto {
