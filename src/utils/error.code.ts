@@ -1,0 +1,6 @@
+export enum ErrorCode {
+  SUCCESS = 1,
+  TITLE_INVALID = 100001,
+  UNKNOWN = -999999,
+  TEMPLATE_NOT_FOUND = 100002,
+}
